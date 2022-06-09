@@ -6,11 +6,13 @@
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.61",
     "@react-oauth/google": "^0.2.6",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "firebase": "^8.9.1",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.3",
     "react": "^16.12.0",
@@ -21,7 +23,8 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "3.4.1",
     "redux": "^4.2.0",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "styled-components": "^5.3.5"
   },
   "scripts": {
     "start": "react-scripts start",
