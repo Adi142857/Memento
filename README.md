@@ -11,5 +11,11 @@ Using React, Node.js, Express & MongoDB, this App is a simple social media app t
 
 ## Technologies used -
 
+React
+Mongodb
+Oauth
+Bcrypt
+Pagination
+
 Setup:
 - run ```npm i && npm start``` for both client and server side to start the app
