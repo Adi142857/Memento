@@ -1,21 +1,34 @@
-# Memento
+<h1 align="center">
+    Memento
+</h1>
 
-![Memories](https://i.ibb.co/Z8Y0CJv/Screenshot-2020-10-30-at-11-10-04.png)
+<!-- ![Memories](https://i.ibb.co/Z8Y0CJv/Screenshot-2020-10-30-at-11-10-04.png) -->
+
+<p align="center">
+  <img src="https://i.ibb.co/Z8Y0CJv/Screenshot-2020-10-30-at-11-10-04.png" alt="animated" />
+</p>
+
 
 ## About
 This is a code repository for memento where you can create your own memories!
  
 Using React, Node.js, Express & MongoDB, this App is a simple social media app that allows users to post interesting events that happened in their lives.
 
-## Live demo of the app - https://memento-1.netlify.app/
 
 ## Technologies used -
 
-React
-Mongodb
-Oauth
-Bcrypt
-Pagination
+ - Reactjs 
+ - Mongodb
+ - Node
+ - Express
+ - Bcrypt
+ - JWT
+ - OAuth
+ - Pagination
+ - Cors
 
-Setup:
+## Setup:
 - run ```npm i && npm start``` for both client and server side to start the app
+
+
+## Live demo of the app - https://memento-1.netlify.app/
