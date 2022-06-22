@@ -5,7 +5,7 @@
 <!-- ![Memories](https://i.ibb.co/Z8Y0CJv/Screenshot-2020-10-30-at-11-10-04.png) -->
 
 <p align="center">
-  <img src="https://i.ibb.co/Z8Y0CJv/Screenshot-2020-10-30-at-11-10-04.png" alt="animated" />
+  <img src="https://user-images.githubusercontent.com/65461420/175060887-e83f8e57-1473-48cb-b320-963fc8129b20.png" alt="animated" />
 </p>
 
 
