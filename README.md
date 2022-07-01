@@ -15,6 +15,14 @@
 ![Screenshot 2022-07-01 233645](https://user-images.githubusercontent.com/65461420/176947744-80401c40-9aa0-44c6-85f3-3b1c31d9cb99.png)
 
 
+<h1 align="center">
+    Search events by tags
+</h1>
+
+
+![Screenshot 2022-07-01 234251](https://user-images.githubusercontent.com/65461420/176948952-0cb4333c-8ecc-4010-b093-0772a482ca11.png)
+
+
 ## About
 This is a code repository for memento where you can create your own memories!
  
