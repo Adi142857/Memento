@@ -8,6 +8,12 @@
   <img src="https://user-images.githubusercontent.com/65461420/175060887-e83f8e57-1473-48cb-b320-963fc8129b20.png" alt="animated" />
 </p>
 
+<h1 align="center">
+    Story Page with comments
+</h1>
+
+![Screenshot 2022-07-01 233645](https://user-images.githubusercontent.com/65461420/176947744-80401c40-9aa0-44c6-85f3-3b1c31d9cb99.png)
+
 
 ## About
 This is a code repository for memento where you can create your own memories!
