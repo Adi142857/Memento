@@ -2,18 +2,20 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import { GoogleLogin } from 'react-google-login';
+// import { GoogleLogin } from '@react-google-login';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-
+import { GoogleLogin,googleLogout } from '@react-oauth/google';
 import Icon from './icon';
 import { signin, signup } from '../../actions/auth';
 import { AUTH } from '../../constants/actionTypes';
 import useStyles from './styles';
 import Input from './Input';
-
+import creteOrGetUser from '../../utils/indes';
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 const SignUp = () => {
+  
   const [form, setForm] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch();
@@ -51,6 +53,8 @@ const SignUp = () => {
       console.log(error);
     }
   };
+  const user=false;
+          
 
   const googleError = () => console.log('Google Sign In was unsuccessful. Try again later');
 
@@ -78,17 +82,25 @@ const SignUp = () => {
           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
             { isSignup ? 'Sign Up' : 'Sign In' }
           </Button>
-          <GoogleLogin
-            clientId="564033717568-bu2nr1l9h31bhk9bff4pqbenvvoju3oq.apps.googleusercontent.com"
-            render={(renderProps) => (
-              <Button className={classes.googleButton} color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
-                Google Sign In
-              </Button>
-            )}
+        
+        
+          {/* <GoogleOAuthProvider
+            clientId="119283489380-es54da748klo09d1tt1b4h0nn5gsqv1s.apps.googleusercontent.com">
+          <div>
+          {user?(
+            <div>Loggedin</div>
+          ):(
+            <GoogleLogin
             onSuccess={googleSuccess}
             onFailure={googleError}
-            cookiePolicy="single_host_origin"
-          />
+            onError={()=>console.log
+              ("err")}/>
+          )}
+          </div>
+          </GoogleOAuthProvider> */}
+         
+          
+         
           <Grid container justify="flex-end">
             <Grid item>
               <Button onClick={switchMode}>
