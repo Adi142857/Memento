@@ -2,25 +2,25 @@
     Memento
 </h1>
 
-<!-- ![Memories](https://i.ibb.co/Z8Y0CJv/Screenshot-2020-10-30-at-11-10-04.png) -->
+<!-- ![Memories](https://user-images.githubusercontent.com/65461420/179420008-3d9a2e40-1039-4998-94b6-23e9fe499bf7.png) -->
+
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/65461420/175060887-e83f8e57-1473-48cb-b320-963fc8129b20.png" alt="animated" />
+  <img src="https://user-images.githubusercontent.com/65461420/179420008-3d9a2e40-1039-4998-94b6-23e9fe499bf7.png" alt="animated" />
 </p>
 
 <h1 align="center">
     Story Page with comments
 </h1>
 
-![Screenshot 2022-07-01 233645](https://user-images.githubusercontent.com/65461420/176947744-80401c40-9aa0-44c6-85f3-3b1c31d9cb99.png)
+![2](https://user-images.githubusercontent.com/65461420/179420072-18a11734-d441-4499-85aa-85845edcc309.png)
 
 
 <h1 align="center">
     Search events by tags
 </h1>
 
-
-![Screenshot 2022-07-01 234251](https://user-images.githubusercontent.com/65461420/176948952-0cb4333c-8ecc-4010-b093-0772a482ca11.png)
+![3](https://user-images.githubusercontent.com/65461420/179420250-f3d753a3-ef30-48d3-9cfd-0ad652c1ac25.png)
 
 
 ## About
