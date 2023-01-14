@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
 
 import memoriesLogo from '../../images/memoriesLogo.png';
-import memoriesText from '../../images/memento.png';
+import memento from '../../images/memento.png';
 import * as actionType from '../../constants/actionTypes';
 import useStyles from './styles';
 
@@ -34,12 +34,14 @@ const Navbar = () => {
     }
 
     setUser(JSON.parse(localStorage.getItem('profile')));
+       // eslint-disable-next-line
   }, [location]);
+    
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
       <Link to="/" className={classes.brandContainer}>
-        <img component={Link} to="/" src={memoriesText} alt="icon" height="45px" />
+        <img component={Link} to="/" src={memento} alt="icon" height="45px" />
         <img className={classes.image} src={memoriesLogo} alt="icon" height="40px" />
       </Link>
       <Toolbar className={classes.toolbar}>

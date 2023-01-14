@@ -16,19 +16,21 @@ const Post = () => {
   const { id } = useParams();
 
   useEffect(() => {
+       // eslint-disable-next-line
     dispatch(getPost(id));
+    
+   // eslint-disable-next-line
   }, [id]);
+
 
   useEffect(() => {
     if (post) {
       dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }));
     }
+       // eslint-disable-next-line
   }, [post]);
-
   if (!post) return null;
-
   const openPost = (_id) => history.push(`/posts/${_id}`);
-
   if (isLoading) {
     return (
       <Paper elevation={6} className={classes.loadingPaper}>
@@ -45,7 +47,7 @@ const Post = () => {
         <div className={classes.section}>
           <Typography variant="h3" component="h2">{post.title}</Typography>
           <Typography gutterBottom variant="h6" color="textSecondary" component="h2">{post.tags.map((tag) => (
-            <Link to={`/tags/${tag}`} style={{ textDecoration: 'none', color: '#3f51b5' }}>
+            <Link to={`/tags/${tag}`} style={{ textDecoration: 'none', color: '#3f51b5' }} key={tag}>
               {` #${tag} `}
             </Link>
           ))}
@@ -59,7 +61,7 @@ const Post = () => {
           </Typography>
           <Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
           <Divider style={{ margin: '20px 0' }} />
-         
+          <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
           <Divider style={{ margin: '20px 0' }} />
           <CommentSection post={post} />
           <Divider style={{ margin: '20px 0' }} />
@@ -79,7 +81,7 @@ const Post = () => {
                 <Typography gutterBottom variant="subtitle2">{name}</Typography>
                 <Typography gutterBottom variant="subtitle2">{message}</Typography>
                 <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography>
-                <img src={selectedFile} width="200px" />
+                <img src={selectedFile} width="200px" alt="file" />
               </div>
             ))}
           </div>
