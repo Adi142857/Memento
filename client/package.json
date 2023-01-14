@@ -2,16 +2,16 @@
   "name": "mern-stack-client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://memories-project-part4.herokuapp.com/", //http://localhost:5000
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.58",
-    "@react-oauth/google": "^0.2.6",
+    "@react-oauth/google": "^0.5.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "dotenv": "^16.0.3",
     "jwt-decode": "^3.1.2",
     "material-ui-chip-input": "^1.1.0",
     "moment": "^2.27.0",

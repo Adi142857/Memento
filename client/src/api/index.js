@@ -1,6 +1,8 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
 
-const API = axios.create({ baseURL: 'https://final-memo.herokuapp.com/' });
+dotenv.config();
+const API = axios.create({ baseURL: 'https://memento-backend.onrender.com'  });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {

@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
+
 import PostMessage from '../models/postMessage.js';
 
 const router = express.Router();
@@ -9,7 +10,7 @@ export const getPosts = async (req, res) => {
     const { page } = req.query;
     
     try {
-        const LIMIT = 8;
+        const LIMIT = 4;
         const startIndex = (Number(page) - 1) * LIMIT; // get the starting index of every page
     
         const total = await PostMessage.countDocuments({});
@@ -20,6 +21,22 @@ export const getPosts = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 }
+export const deletePost=async(req,res)=>{
+    const { id } = req.params;
+    
+   
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+        
+        await PostMessage.findByIdAndRemove(id,{new:true});
+        res.json({ message: "Post deleted successfully." });
+    } catch (error) {    
+        res.status(404).json({ message: error.message });
+    }
+
+    
+}
+
 
 export const getPostsBySearch = async (req, res) => {
     const { searchQuery, tags } = req.query;
@@ -46,6 +63,7 @@ export const getPostsByCreator = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 }
+
 
 export const getPost = async (req, res) => { 
     const { id } = req.params;
@@ -86,15 +104,6 @@ export const updatePost = async (req, res) => {
     res.json(updatedPost);
 }
 
-export const deletePost = async (req, res) => {
-    const { id } = req.params;
-
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
-
-    await PostMessage.findByIdAndRemove(id);
-
-    res.json({ message: "Post deleted successfully." });
-}
 
 export const likePost = async (req, res) => {
     const { id } = req.params;

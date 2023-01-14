@@ -12,20 +12,16 @@ import { likePost, deletePost } from '../../../actions/posts';
 import useStyles from './styles';
 
 const Post = ({ post, setCurrentId }) => {
-
   const user = JSON.parse(localStorage.getItem('profile'));
   const [likes, setLikes] = useState(post?.likes);
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
 
-  const userId = user?.result?._id;
-  const hasLikedPost = (post.likes)?post.likes.find((like) => like === userId): 0;
-
+  const userId = user?.result.googleId || user?.result?._id;
   const handleLike = async () => {
     dispatch(likePost(post._id));
-
-    if (hasLikedPost) {
+    if(likes.length > 0) {
       setLikes(post.likes.filter((id) => id !== userId));
     } else {
       setLikes([...post.likes, userId]);
@@ -33,7 +29,7 @@ const Post = ({ post, setCurrentId }) => {
   };
 
   const Likes = () => {
-    if (likes.length > 0) {
+    if (likes.length > 0 || "") {
       return likes.find((like) => like === userId)
         ? (
           <><ThumbUpAltIcon fontSize="small" />&nbsp;{likes.length > 2 ? `You and ${likes.length - 1} others` : `${likes.length} like${likes.length > 1 ? 's' : ''}` }</>
@@ -90,11 +86,12 @@ const Post = ({ post, setCurrentId }) => {
         <Button size="small" color="primary" disabled={!user?.result} onClick={handleLike}>
           <Likes />
         </Button>
-        {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
+        {(user?.result?.sub === post?.creator || user?.result?._id === post?.creator) && (
           <Button size="small" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
             <DeleteIcon fontSize="small" /> &nbsp; Delete
           </Button>
         )}
+       
       </CardActions>
     </Card>
   );
