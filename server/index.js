@@ -16,13 +16,10 @@ app.get('/',(req,res)=>{
 
 app.use(express.json({ limit: '30mb', extended: true }))
 app.use(express.urlencoded({ limit: '30mb', extended: true }))
-
-const corsOptions = {
-  origin: ['http://localhost:3000/', 'https://create-memento.netlify.app/'],
-  credentials: true, // Enable credentials (cookies, headers) for these origins
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
+app.use(cors({
+  origin: '*',
+}));
 
 dotenv.config();
 const CONNECTION_URL = process.env.REACT_APP_MONGO_DB_URL;
@@ -34,3 +31,4 @@ mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: tr
 
 
 mongoose.set('useFindAndModify', false);
+
