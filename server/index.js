@@ -1,15 +1,16 @@
 
 import express from 'express';
-import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-
-
 import postRoutes from './routes/posts.js';
 import userRouter from "./routes/user.js";
 
 const app = express();
+
+app.get('/',(req,res)=>{
+  res.json("API is running");
+})
 
 app.use(express.json({ limit: '30mb', extended: true }))
 app.use(express.urlencoded({ limit: '30mb', extended: true }))
@@ -30,7 +31,3 @@ mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: tr
 
 
 mongoose.set('useFindAndModify', false);
-
-app.get('/',(req,res)=>{
-  res.json("API is running");
-})
