@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node index.js",
     "dev": "set DEBUG=backend:* & nodemon index.js"
   },
   "author": "",
