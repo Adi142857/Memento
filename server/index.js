@@ -8,19 +8,21 @@ import userRouter from "./routes/user.js";
 
 const app = express();
 
+app.use('/posts', postRoutes);
+app.use("/user", userRouter);
 app.get('/',(req,res)=>{
   res.json("API is running");
 })
 
-app.use('/posts', postRoutes);
-app.use("/user", userRouter);
-
 app.use(express.json({ limit: '30mb', extended: true }))
 app.use(express.urlencoded({ limit: '30mb', extended: true }))
-app.use(cors());
-app.use(cors({
-  origin: '*',
-}));
+
+const corsOptions = {
+  origin: ['http://localhost:3000/', 'https://create-memento.netlify.app/'],
+  credentials: true, // Enable credentials (cookies, headers) for these origins
+};
+
+app.use(cors(corsOptions));
 
 dotenv.config();
 const CONNECTION_URL = process.env.REACT_APP_MONGO_DB_URL;
