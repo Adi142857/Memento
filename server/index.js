@@ -9,7 +9,7 @@ import userRouter from "./routes/user.js";
 const app = express();
 
 app.use('/posts', postRoutes);
-app.use("/user", userRouter);
+app.use("/  ", userRouter);
 
 app.get('/',(req,res)=>{
   res.json("API is running");

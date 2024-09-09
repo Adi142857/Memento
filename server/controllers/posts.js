@@ -17,7 +17,7 @@ const redisClient = redis.createClient({
   
   // Middleware to get posts with Redis caching
   export const getPosts = async (req, res) => {
-    console.log("inside get----")
+    console.log("inside get----");
     const { page } = req.query;
     const LIMIT = 4;
     const startIndex = (Number(page) - 1) * LIMIT; // Starting index for pagination
@@ -26,20 +26,25 @@ const redisClient = redis.createClient({
     const cacheKey = `posts:page:${page}`;
   
     try {
+      console.log("Checking Redis cache...");
       // Check if cached data exists
       const cachedData = await redisClient.get(cacheKey);
       if (cachedData) {
         // Parse the cached JSON data and send it as a response
-        console.log('Serving from Redis Cache');
+        console.log("Serving from Redis Cache");
         return res.json(JSON.parse(cachedData));
       }
   
+      console.log("Fetching from MongoDB...");
       // If not in cache, fetch from MongoDB
       const total = await PostMessage.countDocuments({});
+      console.log("Total posts count:", total);
+      
       const posts = await PostMessage.find()
         .sort({ _id: -1 })
         .limit(LIMIT)
         .skip(startIndex);
+      console.log("Fetched posts from MongoDB:", posts);
   
       // Structure the response
       const responseData = {
@@ -48,15 +53,20 @@ const redisClient = redis.createClient({
         numberOfPages: Math.ceil(total / LIMIT),
       };
   
+      console.log("Caching data in Redis...");
       // Cache the data in Redis and set an expiration time (e.g., 600 seconds)
       await redisClient.setEx(cacheKey, 600, JSON.stringify(responseData));
+      console.log("Data cached in Redis with key:", cacheKey);
   
       // Send the response
+      console.log("Sending response...");
       res.json(responseData);
     } catch (error) {
+      console.error("Error occurred:", error);
       res.status(404).json({ message: error.message });
     }
   };
+  
 
 
 export const deletePost=async(req,res)=>{
