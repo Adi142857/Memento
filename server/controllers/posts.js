@@ -1,26 +1,63 @@
 import express from 'express';
 import mongoose from 'mongoose';
-
+import redis from 'redis';
+import dotenv from 'dotenv';
 
 import PostMessage from '../models/postMessage.js';
 
+dotenv.config();
+
 const router = express.Router();
 
-export const getPosts = async (req, res) => {
+const redisClient = redis.createClient({
+    url: process.env.REDIS_URL
+  });
+  
+  redisClient.connect().catch(console.error);
+  
+  // Middleware to get posts with Redis caching
+  export const getPosts = async (req, res) => {
     const { page } = req.query;
-    
+    const LIMIT = 4;
+    const startIndex = (Number(page) - 1) * LIMIT; // Starting index for pagination
+  
+    // Define Redis cache key using page number to differentiate paginated results
+    const cacheKey = `posts:page:${page}`;
+  
     try {
-        const LIMIT = 4;
-        const startIndex = (Number(page) - 1) * LIMIT; // get the starting index of every page
-    
-        const total = await PostMessage.countDocuments({});
-        const posts = await PostMessage.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
-
-        res.json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT)});
-    } catch (error) {    
-        res.status(404).json({ message: error.message });
+      // Check if cached data exists
+      const cachedData = await redisClient.get(cacheKey);
+      if (cachedData) {
+        // Parse the cached JSON data and send it as a response
+        console.log('Serving from Redis Cache');
+        return res.json(JSON.parse(cachedData));
+      }
+  
+      // If not in cache, fetch from MongoDB
+      const total = await PostMessage.countDocuments({});
+      const posts = await PostMessage.find()
+        .sort({ _id: -1 })
+        .limit(LIMIT)
+        .skip(startIndex);
+  
+      // Structure the response
+      const responseData = {
+        data: posts,
+        currentPage: Number(page),
+        numberOfPages: Math.ceil(total / LIMIT),
+      };
+  
+      // Cache the data in Redis and set an expiration time (e.g., 600 seconds)
+      await redisClient.setEx(cacheKey, 600, JSON.stringify(responseData));
+  
+      // Send the response
+      res.json(responseData);
+    } catch (error) {
+      res.status(404).json({ message: error.message });
     }
-}
+  };
+
+
 export const deletePost=async(req,res)=>{
     const { id } = req.params;
     

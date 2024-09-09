@@ -23,8 +23,9 @@ app.use(cors({
 }));
 
 dotenv.config();
-const CONNECTION_URL = process.env.REACT_APP_MONGO_DB_URL;
-const PORT = process.env.REACT_APP_PORT|| 5000;
+
+const CONNECTION_URL = process.env.CONNECTION_URL;
+const PORT = process.env.PORT|| 5000;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(PORT, () => console.log(`Server Running on port: http://localhost:${PORT}`)))
