@@ -13,6 +13,7 @@ app.use("/user", userRouter);
 
 app.get('/',(req,res)=>{
   res.json("API is running");
+  console.log("runnnnnnn  ")
 })
 
 app.use(express.json({ limit: '30mb', extended: true }))

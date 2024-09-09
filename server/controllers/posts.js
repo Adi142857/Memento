@@ -17,6 +17,7 @@ const redisClient = redis.createClient({
   
   // Middleware to get posts with Redis caching
   export const getPosts = async (req, res) => {
+    console.log("inside get----")
     const { page } = req.query;
     const LIMIT = 4;
     const startIndex = (Number(page) - 1) * LIMIT; // Starting index for pagination

@@ -7,6 +7,7 @@ import auth from "../middleware/auth.js";
 
 router.get('/creator', getPostsByCreator);
 router.get('/search', getPostsBySearch);
+console.log("inside posts==========")
 router.get('/', getPosts);
 router.get('/:id', getPost);
 
