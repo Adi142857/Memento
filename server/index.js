@@ -8,6 +8,13 @@ import userRouter from "./routes/user.js";
 
 const app = express();
 
+// Configure CORS
+app.use(cors({
+  origin: '*', // Allow all origins; you can restrict this to specific domains
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 app.use('/posts', postRoutes);
 app.use("/  ", userRouter);
 
@@ -18,9 +25,7 @@ app.get('/',(req,res)=>{
 
 app.use(express.json({ limit: '30mb', extended: true }))
 app.use(express.urlencoded({ limit: '30mb', extended: true }))
-app.use(cors({
-  origin: ['http://localhost:3000', 'https://create-memento.netlify.app']  // Allow specific origins
-}));
+
 
 dotenv.config();
 
