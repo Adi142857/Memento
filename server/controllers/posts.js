@@ -25,7 +25,6 @@ export const getPosts = async (req, res) => {
   const cacheKey = `posts:page:${page}`;
 
   try {
-    console.log("Checking Redis cache...");
     // Check if cached data exists
     const cachedData = await redisClient.get(cacheKey);
     if (cachedData) {
