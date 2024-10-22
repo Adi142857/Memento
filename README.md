@@ -12,7 +12,6 @@
 <h1 align="center">
     Story Page with comments
 </h1>
-
 ![2](https://user-images.githubusercontent.com/65461420/179420072-18a11734-d441-4499-85aa-85845edcc309.png)
 
 
